@@ -186,8 +186,8 @@ const Page = async () => {
                 ))}
               </div>
               <h2 className="text-3xl font-bold">{mainPost.title}</h2>
-              <p className="text-foreground/60 text-base">{mainPost.excerpt}</p>
-              <div className="flex items-center gap-4 mt-4 text-sm text-muted-foreground">
+              <p className="text-foreground/60 text-base">{truncateText(mainPost.excerpt, 180)}</p>
+              <div className="flex items-center gap-4 mt-4 text-sm text-muted-foreground flex-wrap">
                 <span>
                   {dateTransformer(mainPost.createdAt)}
                 </span>
@@ -261,7 +261,7 @@ const Page = async () => {
                 </div>
                 <h2 className="text-2xl font-bold">{truncateText(post.title, 35)}</h2>
                 <p className="text-foreground/60 text-base">{truncateText(post.excerpt, 60)}</p>
-                <div className="flex items-center gap-4 mt-4 text-sm text-muted-foreground">
+                <div className="flex items-center gap-4 mt-4 text-sm text-muted-foreground flex-wrap">
                   <span>
                     {dateTransformer(post.createdAt)}
                   </span>
