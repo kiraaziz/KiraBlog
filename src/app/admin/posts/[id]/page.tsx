@@ -137,7 +137,7 @@ export default function EditPostPage({ params }: any) {
         </div>
         <div className="space-y-1">
           <label className="text-sm" htmlFor="content">Content (Markdown)</label>
-          <MDeditor value={content} onChange={(e) => setContent(e.target.value)} />
+          <MDeditor value={content} onChange={(e: any) => setContent(e)} />
         </div>
 
         <div className="grid gap-4 md:grid-cols-4">
