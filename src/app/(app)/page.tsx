@@ -3,45 +3,72 @@ import { db } from "@/server/db"
 import { ArrowUpRight, Facebook, Github, Instagram } from 'lucide-react';
 import Link from "next/link";
 
-export const dynamic = 'force-dynamic';
-
 export async function generateMetadata(): Promise<any> {
-  const settings: any = await db.setting.findMany({});
-  const title = settings.find((v: any) => v.key === "home-title")?.value || "Home";
-  const description = settings.find((v: any) => v.key === "home-text")?.value || "Welcome to the blog.";
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
+  try {
+    const settings: any = await db.setting.findMany({});
+    const title = settings.find((v: any) => v.key === "home-title")?.value || "Home";
+    const description = settings.find((v: any) => v.key === "home-text")?.value || "Welcome to the blog.";
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "";
 
-  return {
-    title,
-    description,
-    openGraph: {
+    return {
       title,
       description,
-      url: baseUrl,
-      type: "website",
-      images: [
-        {
-          url: settings.find((v: any) => v.key === "home-og-image")?.value ||
-            settings.find((v: any) => v.key === "home-og-banner")?.value ||
-            "",
-          alt: title,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: [
-        settings.find((v: any) => v.key === "home-og-image")?.value ||
-        settings.find((v: any) => v.key === "home-og-banner")?.value ||
-        "",
-      ],
-    },
-    alternates: {
-      canonical: baseUrl,
-    },
-  };
+      openGraph: {
+        title,
+        description,
+        url: baseUrl,
+        type: "website",
+        images: [
+          {
+            url: settings.find((v: any) => v.key === "home-og-image")?.value ||
+              settings.find((v: any) => v.key === "home-og-banner")?.value ||
+              "",
+            alt: title,
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: [
+          settings.find((v: any) => v.key === "home-og-image")?.value ||
+          settings.find((v: any) => v.key === "home-og-banner")?.value ||
+          "",
+        ],
+      },
+      alternates: {
+        canonical: baseUrl,
+      },
+    };
+  } catch (error) {
+    console.error("Error generating metadata:", error);
+    return {
+      title: "Home",
+      description: "Welcome to the blog.",
+      openGraph: {
+        title: "Home",
+        description: "Welcome to the blog.",
+        url: process.env.NEXT_PUBLIC_BASE_URL || "",
+        type: "website",
+        images: [
+          {
+            url: "",
+            alt: "Home",
+          },
+        ],
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: "Home",
+        description: "Welcome to the blog.",
+        images: [""],
+      },
+      alternates: {
+        canonical: process.env.NEXT_PUBLIC_BASE_URL || "",
+      },
+    };
+  }
 }
 
 const Page = async () => {

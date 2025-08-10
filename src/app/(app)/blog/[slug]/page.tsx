@@ -5,18 +5,25 @@ import MarkdownRenderer from "@/components/MarkdownRender"
 import NewLetter from "@/components/Newletter"
 
 export async function generateMetadata({ params }: any): Promise<any> {
-    const post = await db.post.findUnique({
-        where: { slug: params.slug },
-        select: { title: true, excerpt: true }
-    })
-    if (!post) {
+    try {
+        const post = await db.post.findUnique({
+            where: { slug: params.slug },
+            select: { title: true, excerpt: true }
+        })
+        if (!post) {
+            return {
+                title: "Blog Post Not Found",
+            }
+        }
+        return {
+            title: `Kira Blog - ${post.title}`,
+            description: post.excerpt,
+        }
+    } catch (error) {
+        console.error("Error generating post metadata:", error)
         return {
             title: "Blog Post Not Found",
         }
-    }
-    return {
-        title: `Kira Blog - ${post.title}`,
-        description: post.excerpt,
     }
 }
 

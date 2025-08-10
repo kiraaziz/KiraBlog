@@ -2,29 +2,48 @@ import { db } from "@/server/db"
 import Link from "next/link"
 
 export async function generateMetadata({ params }: any): Promise<any> {
-  const tagId = decodeURIComponent(params.id)
-  const totalPost = await db.post.count({
-    where: {
-      bannerUrl: { not: null },
-      tags: { hasSome: [tagId] }
-    }
-  })
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
-  return {
-    title: `Posts tagged with "${tagId}"`,
-    description: totalPost > 0
-      ? `Browse ${totalPost} blog post${totalPost > 1 ? "s" : ""} tagged with "${tagId}".`
-      : `No blog posts found for the tag "${tagId}".`,
-    alternates: {
-      canonical: `${baseUrl}/tag/${encodeURIComponent(tagId)}`
-    },
-    openGraph: {
+  try {
+    const tagId = decodeURIComponent(params.id)
+    const totalPost = await db.post.count({
+      where: {
+        bannerUrl: { not: null },
+        tags: { hasSome: [tagId] }
+      }
+    })
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+    return {
       title: `Posts tagged with "${tagId}"`,
       description: totalPost > 0
         ? `Browse ${totalPost} blog post${totalPost > 1 ? "s" : ""} tagged with "${tagId}".`
         : `No blog posts found for the tag "${tagId}".`,
-      url: `${baseUrl}/tag/${encodeURIComponent(tagId)}`,
-      type: "website"
+      alternates: {
+        canonical: `${baseUrl}/tag/${encodeURIComponent(tagId)}`
+      },
+      openGraph: {
+        title: `Posts tagged with "${tagId}"`,
+        description: totalPost > 0
+          ? `Browse ${totalPost} blog post${totalPost > 1 ? "s" : ""} tagged with "${tagId}".`
+          : `No blog posts found for the tag "${tagId}".`,
+        url: `${baseUrl}/tag/${encodeURIComponent(tagId)}`,
+        type: "website"
+      }
+    }
+  } catch (error) {
+    console.error("Error generating tag metadata:", error)
+    const tagId = params?.id ? decodeURIComponent(params.id) : "unknown"
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL
+    return {
+      title: `Posts tagged with "${tagId}"`,
+      description: `No blog posts found for the tag "${tagId}".`,
+      alternates: {
+        canonical: `${baseUrl}/tag/${encodeURIComponent(tagId)}`
+      },
+      openGraph: {
+        title: `Posts tagged with "${tagId}"`,
+        description: `No blog posts found for the tag "${tagId}".`,
+        url: `${baseUrl}/tag/${encodeURIComponent(tagId)}`,
+        type: "website"
+      }
     }
   }
 }
