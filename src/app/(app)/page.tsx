@@ -192,7 +192,7 @@ const Page = async () => {
                   {dateTransformer(mainPost.createdAt)}
                 </span>
                 <span>• {mainPost.views} views</span>
-                <span>• {formatWatchTime(mainPost.watchTime)} min read</span>
+                <span>• {formatWatchTime(mainPost.watchTime)}</span>
               </div>
             </div>
             {mainPost.bannerUrl && (
@@ -266,7 +266,7 @@ const Page = async () => {
                     {dateTransformer(post.createdAt)}
                   </span>
                   <span>• {post.views} views</span>
-                  <span>• {formatWatchTime(post.watchTime)} min read</span>
+                  <span>• {formatWatchTime(post.watchTime)}</span>
                 </div>
               </div>
             </div>
