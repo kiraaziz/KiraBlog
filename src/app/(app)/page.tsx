@@ -46,20 +46,20 @@ const Page = async () => {
 
   const settings: any = await db.setting.findMany({})
   const settingsData: any = {
-    me: settings.find((v: any) => v.key === "home-me").value,
-    title: settings.find((v: any) => v.key === "home-title").value,
-    text: settings.find((v: any) => v.key === "home-text").value,
-    svg: settings.find((v: any) => v.key === "home-svg").value,
-    banner: settings.find((v: any) => v.key === "home-banner").value,
-    newsletter: settings.find((v: any) => v.key === "newsletter-title").value,
-    socialTitle: settings.find((v: any) => v.key === "social-title").value,
-    socialText: settings.find((v: any) => v.key === "social-text").value,
-    facebook: settings.find((v: any) => v.key === "social-face-url").value,
-    github: settings.find((v: any) => v.key === "social-git-url").value,
-    instagram: settings.find((v: any) => v.key === "social-inst-url").value,
-    mainPostId: settings.find((v: any) => v.key === "main-post").value,
-    siteUrl: settings.find((v: any) => v.key === "my-site").value,
-    siteName: settings.find((v: any) => v.key === "my-site-text").value,
+    me: settings.find((v: any) => v.key === "home-me").value || "",
+    title: settings.find((v: any) => v.key === "home-title").value || "",
+    text: settings.find((v: any) => v.key === "home-text").value || "",
+    svg: settings.find((v: any) => v.key === "home-svg").value || "",
+    banner: settings.find((v: any) => v.key === "home-banner").value || "",
+    newsletter: settings.find((v: any) => v.key === "newsletter-title").value || "",
+    socialTitle: settings.find((v: any) => v.key === "social-title").value || "",
+    socialText: settings.find((v: any) => v.key === "social-text").value || "",
+    facebook: settings.find((v: any) => v.key === "social-face-url").value || "",
+    github: settings.find((v: any) => v.key === "social-git-url").value || "",
+    instagram: settings.find((v: any) => v.key === "social-inst-url").value || "",
+    mainPostId: settings.find((v: any) => v.key === "main-post").value || "",
+    siteUrl: settings.find((v: any) => v.key === "my-site").value || "",
+    siteName: settings.find((v: any) => v.key === "my-site-text").value || "",
   }
 
   const mainPostId = Number(settingsData.mainPostId) || 1

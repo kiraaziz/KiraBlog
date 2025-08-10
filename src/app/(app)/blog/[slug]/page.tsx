@@ -4,11 +4,7 @@ import PostTimer from "@/components/PostTimer"
 import MarkdownRenderer from "@/components/MarkdownRender"
 import NewLetter from "@/components/Newletter"
 
-interface BlogPageProps {
-    params: { slug: string }
-}
-
-export async function generateMetadata({ params }: BlogPageProps): Promise<any> {
+export async function generateMetadata({ params }: any): Promise<any> {
     const post = await db.post.findUnique({
         where: { slug: params.slug },
         select: { title: true, excerpt: true }
@@ -36,7 +32,7 @@ function formatWatchTime(seconds: number): string {
     return parts.join(" ")
 }
 
-export default async function BlogPage({ params }: BlogPageProps) {
+export default async function BlogPage({ params }: any) {
     const post = await db.post.findUnique({
         where: { slug: params.slug },
     })

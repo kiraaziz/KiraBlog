@@ -1,16 +1,7 @@
 import { db } from "@/server/db"
 import Link from "next/link"
 
-interface PageProps {
-  params: {
-    id: string
-  }
-  searchParams: {
-    page?: string
-  }
-}
-
-export async function generateMetadata({ params }: { params: { id: string } }): Promise<any> {
+export async function generateMetadata({ params }: any): Promise<any> {
   const tagId = decodeURIComponent(params.id)
   const totalPost = await db.post.count({
     where: {
@@ -38,7 +29,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
   }
 }
 
-const Page = async ({ params, searchParams }: PageProps) => {
+const Page = async ({ params, searchParams }: any) => {
   const tagId = decodeURIComponent(params.id)
   const currentPage = parseInt(searchParams.page || '1')
   const postsPerPage = 20

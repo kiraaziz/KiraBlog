@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useDeletePost, useGetPostById, useUpdatePost } from "@/utils/hooks/usePosts";
 import MDeditor from "@/components/Settings/MDeditor";
 
-export default function EditPostPage({ params }: { params: { id: string } }) {
+export default function EditPostPage({ params }: any) {
   const router = useRouter();
   const id = Number(params.id);
   const [loading, setLoading] = useState(true);

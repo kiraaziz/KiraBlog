@@ -11,7 +11,7 @@ function getPageParam(searchParams: { [key: string]: string | string[] | undefin
   return parseInt(page, 10) || 1;
 }
 
-export default async function AdminPostsPage({ searchParams }: { searchParams?: { [key: string]: string | string[] | undefined } } = {}) {
+export default async function AdminPostsPage({ searchParams }: any) {
   const page = getPageParam(searchParams || {});
   const skip = (page - 1) * PAGE_SIZE;
 
