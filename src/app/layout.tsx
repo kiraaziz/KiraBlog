@@ -7,9 +7,6 @@ import { Toaster } from "sonner";
 import type { Metadata } from 'next'
 import { Analytics } from "@vercel/analytics/next"
 
-export const dynamic = 'force-dynamic';
-
-
 const geist = Geist({
   subsets: ['latin'],
 })
