@@ -3,6 +3,8 @@ import { db } from "@/server/db"
 import { ArrowUpRight, Facebook, Github, Instagram } from 'lucide-react';
 import Link from "next/link";
 
+export const dynamic = 'force-dynamic';
+
 export async function generateMetadata(): Promise<any> {
   const settings: any = await db.setting.findMany({});
   const title = settings.find((v: any) => v.key === "home-title")?.value || "Home";

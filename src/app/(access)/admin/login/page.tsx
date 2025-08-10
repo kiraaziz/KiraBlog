@@ -16,7 +16,7 @@ async function handleLogin(formData: FormData) {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
             sameSite: 'lax',
-            maxAge: 60 * 60 * 24 * 7,  
+            maxAge: 60 * 60 * 24 * 7,
         });
         redirect('/admin');
     } else {
@@ -26,9 +26,7 @@ async function handleLogin(formData: FormData) {
 
 export default function AdminLogin({
     searchParams,
-}: {
-    searchParams: { error?: string };
-}) {
+}: any) {
     return (
         <div className="min-h-screen bg-background flex items-center justify-center">
             <div className="bg-card p-8 rounded-lg shadow-sm border max-w-sm w-full">

@@ -6,6 +6,9 @@ import { Suspense } from "react";
 import { Toaster } from "sonner";
 import type { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic';
+
+
 const geist = Geist({
   subsets: ['latin'],
 })
@@ -42,7 +45,6 @@ export default function RootLayout({
             />
           </div>
           <Link href={"/"} className="w-full flex items-center justify-center mt-10 text-5xl font-comic">
-            <img src="/logo.png" alt="Kira Blog Logo" className="w-12 h-12 mr-4" />
             Kira Blog
           </Link>
           <div className="lg:max-w-[80%] w-full p-3 bg-foreground/5 animate-pulse border-y border-foreground/10 mx-auto my-10 overflow-auto tag-scroller">
