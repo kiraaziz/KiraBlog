@@ -151,7 +151,7 @@ export default async function BlogPage({ params }: any) {
                                     <Link
                                         key={tag}
                                         href={`/tag/${encodeURIComponent(tag)}`}
-                                        className="bg-accent text-accent-foreground px-2 py-0.5 rounded text-xs hover:underline"
+                                        className="capitalize bg-accent text-accent-foreground px-2 py-0.5 rounded text-xs hover:underline"
                                     >
                                         #{tag}
                                     </Link>

@@ -125,6 +125,19 @@ const Page = async () => {
     return text.slice(0, maxSize) + "...";
   }
 
+  function formatWatchTime(seconds: number): string {
+    if (!seconds || seconds <= 0) return ""
+    const h = Math.floor(seconds / 3600)
+    const m = Math.floor((seconds % 3600) / 60)
+    const s = seconds % 60
+    const parts = []
+    if (h > 0) parts.push(`${h} h`)
+    if (m > 0) parts.push(`${m} min`)
+    if (s > 0) parts.push(`${s} second`)
+    return parts.join(" ")
+}
+
+
   return (
     <>
       <div className="w-full max-w-3xl lg:p-0 p-7 mx-auto lg:mt-20 lg:min-h-[50svh] flex flex-col justify-center ">
@@ -179,7 +192,7 @@ const Page = async () => {
                   {dateTransformer(mainPost.createdAt)}
                 </span>
                 <span>• {mainPost.views} views</span>
-                <span>• {mainPost.watchTime} min read</span>
+                <span>• {formatWatchTime(mainPost.watchTime)} min read</span>
               </div>
             </div>
             {mainPost.bannerUrl && (
@@ -253,7 +266,7 @@ const Page = async () => {
                     {dateTransformer(post.createdAt)}
                   </span>
                   <span>• {post.views} views</span>
-                  <span>• {post.watchTime} min read</span>
+                  <span>• {formatWatchTime(post.watchTime)} min read</span>
                 </div>
               </div>
             </div>

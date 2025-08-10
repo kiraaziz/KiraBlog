@@ -95,7 +95,7 @@ export async function useUpdatePost(data: UpdatePostInput) {
   const content = (data.content ?? "").trim();
   if (!content) throw new Error("Content is required");
 
-  const tagsArray = (data.tags ?? []).map((t) => t.trim()).filter(Boolean);
+  const tagsArray = (data.tags ?? []).map((t) => t.trim().toLocaleLowerCase()).filter(Boolean);
   const publishDate = data.publishDate ? new Date(data.publishDate) : null;
   const isScheduled = Boolean(data.isScheduled && publishDate);
   const published = Boolean(data.published) && !isScheduled;

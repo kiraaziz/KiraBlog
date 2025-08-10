@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export async function generateMetadata({ params }: any): Promise<any> {
   try {
-    const tagId = decodeURIComponent(params.id)
+    const tagId = decodeURIComponent(params.id).toLocaleLowerCase()
     const totalPost = await db.post.count({
       where: {
         bannerUrl: { not: null },
@@ -49,7 +49,7 @@ export async function generateMetadata({ params }: any): Promise<any> {
 }
 
 const Page = async ({ params, searchParams }: any) => {
-  const tagId = decodeURIComponent(params.id)
+  const tagId = decodeURIComponent(params.id).toLocaleLowerCase()
   const currentPage = parseInt(searchParams.page || '1')
   const postsPerPage = 20
   const skip = (currentPage - 1) * postsPerPage
@@ -87,6 +87,18 @@ const Page = async ({ params, searchParams }: any) => {
     if (text.length <= maxSize) return text
     return text.slice(0, maxSize) + "..."
   }
+
+  function formatWatchTime(seconds: number): string {
+    if (!seconds || seconds <= 0) return ""
+    const h = Math.floor(seconds / 3600)
+    const m = Math.floor((seconds % 3600) / 60)
+    const s = seconds % 60
+    const parts = []
+    if (h > 0) parts.push(`${h} h`)
+    if (m > 0) parts.push(`${m} min`)
+    if (s > 0) parts.push(`${s} second`)
+    return parts.join(" ")
+}
 
   return (
     <>
@@ -131,7 +143,7 @@ const Page = async ({ params, searchParams }: any) => {
                         {dateTransformer(post.createdAt)}
                       </span>
                       <span>• {post.views} views</span>
-                      <span>• {post.watchTime} min read</span>
+                      <span>• {formatWatchTime(post.watchTime)}</span>
                     </div>
                   </div>
                 </div>
