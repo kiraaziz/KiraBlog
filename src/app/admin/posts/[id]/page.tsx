@@ -47,8 +47,7 @@ export default function EditPostPage({ params }: any) {
     })();
   }, [id, router]);
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSave = async () => {
     try {
       setSaving(true);
       setError(null);
@@ -94,24 +93,47 @@ export default function EditPostPage({ params }: any) {
           </a>
         )}
       </div>
-      <form onSubmit={onSubmit} className="space-y-4">
+      <div className="space-y-4">
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-1">
             <label className="text-sm" htmlFor="title">Title</label>
-            <input id="title" className="w-full rounded border px-3 py-2" value={title} onChange={(e) => setTitle(e.target.value)} required />
+            <input
+              id="title"
+              className="w-full rounded border px-3 py-2"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
           </div>
           <div className="space-y-1">
             <label className="text-sm" htmlFor="bannerUrl">Banner URL</label>
-            <input id="bannerUrl" className="w-full rounded border px-3 py-2" value={bannerUrl} onChange={(e) => setBannerUrl(e.target.value)} />
+            <input
+              id="bannerUrl"
+              className="w-full rounded border px-3 py-2"
+              value={bannerUrl}
+              onChange={(e) => setBannerUrl(e.target.value)}
+            />
           </div>
         </div>
         <div className="space-y-1">
           <label className="text-sm" htmlFor="tags">Tags (comma separated)</label>
-          <input id="tags" className="w-full rounded border px-3 py-2" value={tags} onChange={(e) => setTags(e.target.value)} />
+          <input
+            id="tags"
+            className="w-full rounded border px-3 py-2"
+            value={tags}
+            onChange={(e) => setTags(e.target.value)}
+          />
         </div>
         <div className="space-y-1">
           <label className="text-sm" htmlFor="excerpt">Excerpt</label>
-          <textarea id="excerpt" rows={3} className="w-full rounded border px-3 py-2" value={excerpt} onChange={(e) => setExcerpt(e.target.value)} required />
+          <textarea
+            id="excerpt"
+            rows={3}
+            className="w-full rounded border px-3 py-2"
+            value={excerpt}
+            onChange={(e) => setExcerpt(e.target.value)}
+            required
+          />
         </div>
         <div className="space-y-1">
           <label className="text-sm" htmlFor="content">Content (Markdown)</label>
@@ -120,37 +142,63 @@ export default function EditPostPage({ params }: any) {
 
         <div className="grid gap-4 md:grid-cols-4">
           <label className="flex items-center gap-2">
-            <input type="checkbox" checked={published} onChange={(e) => {
-              setPublished(e.target.checked);
-              if (e.target.checked) {
-                setIsScheduled(false);
-                setPublishDate("");
-              }
-            }} />
+            <input
+              type="checkbox"
+              checked={published}
+              onChange={(e) => {
+                setPublished(e.target.checked);
+                if (e.target.checked) {
+                  setIsScheduled(false);
+                  setPublishDate("");
+                }
+              }}
+            />
             <span>Publish now</span>
           </label>
           <label className="flex items-center gap-2">
-            <input type="checkbox" checked={isScheduled} onChange={(e) => {
-              setIsScheduled(e.target.checked);
-              if (e.target.checked) setPublished(false);
-            }} />
+            <input
+              type="checkbox"
+              checked={isScheduled}
+              onChange={(e) => {
+                setIsScheduled(e.target.checked);
+                if (e.target.checked) setPublished(false);
+              }}
+            />
             <span>Schedule</span>
           </label>
         </div>
         {isScheduled && (
           <div>
             <label className="text-sm" htmlFor="publishDate">Publish date</label>
-            <input id="publishDate" type="datetime-local" className="w-full rounded border px-3 py-2" value={publishDate} onChange={(e) => setPublishDate(e.target.value)} required={isScheduled} />
+            <input
+              id="publishDate"
+              type="datetime-local"
+              className="w-full rounded border px-3 py-2"
+              value={publishDate}
+              onChange={(e) => setPublishDate(e.target.value)}
+              required={isScheduled}
+            />
           </div>
         )}
         {error && <div className="text-sm text-red-600">{error}</div>}
         <div className="flex items-center gap-3">
-          <button type="submit" disabled={saving} className="rounded bg-primary px-3 py-2 text-white disabled:opacity-60">{saving ? "Saving…" : "Save"}</button>
-          <button type="button" onClick={onDelete} className="rounded border border-red-600 px-3 py-2 text-red-600">Delete</button>
+          <button
+            type="button"
+            disabled={saving}
+            className="rounded bg-primary px-3 py-2 text-white disabled:opacity-60"
+            onClick={handleSave}
+          >
+            {saving ? "Saving…" : "Save"}
+          </button>
+          <button
+            type="button"
+            onClick={onDelete}
+            className="rounded border border-red-600 px-3 py-2 text-red-600"
+          >
+            Delete
+          </button>
         </div>
-      </form>
+      </div>
     </div>
   );
 }
-
-

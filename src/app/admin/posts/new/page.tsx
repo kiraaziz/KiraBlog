@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useCreatePost } from "@/utils/hooks/usePosts";
 import dynamic from "next/dynamic";
 const MDeditor = dynamic(() => import("@/components/Settings/MDeditor"), { ssr: false });
@@ -18,15 +18,18 @@ export default function NewPostPage() {
 
   const [content, setContent] = useState<string>("");
 
-  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const form = e.currentTarget as HTMLFormElement;
-    const formData = new FormData(form);
-    const title = String(formData.get("title") ?? "");
-    const excerpt = String(formData.get("excerpt") ?? "");
+  // Refs for form fields
+  const titleRef = useRef<HTMLInputElement>(null);
+  const bannerUrlRef = useRef<HTMLInputElement>(null);
+  const tagsRef = useRef<HTMLInputElement>(null);
+  const excerptRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleCreate = async () => {
+    const title = titleRef.current?.value ?? "";
+    const excerpt = excerptRef.current?.value ?? "";
     const contentValue = content;
-    const bannerUrl = String(formData.get("bannerUrl") ?? "").trim() || undefined;
-    const tags = String(formData.get("tags") ?? "")
+    const bannerUrl = bannerUrlRef.current?.value.trim() || undefined;
+    const tags = (tagsRef.current?.value ?? "")
       .split(",")
       .map((t) => t.trim())
       .filter(Boolean);
@@ -82,24 +85,48 @@ export default function NewPostPage() {
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-semibold">New Post</h1>
-      <form onSubmit={onSubmit} className="space-y-4">
+      <form className="space-y-4" autoComplete="off">
         <div className="grid gap-4 md:grid-cols-2">
           <div className="space-y-1">
             <label className="text-sm" htmlFor="title">Title</label>
-            <input id="title" name="title" className="w-full rounded border px-3 py-2" required />
+            <input
+              id="title"
+              name="title"
+              className="w-full rounded border px-3 py-2"
+              required
+              ref={titleRef}
+            />
           </div>
           <div className="space-y-1">
             <label className="text-sm" htmlFor="bannerUrl">Banner URL</label>
-            <input id="bannerUrl" name="bannerUrl" className="w-full rounded border px-3 py-2" />
+            <input
+              id="bannerUrl"
+              name="bannerUrl"
+              className="w-full rounded border px-3 py-2"
+              ref={bannerUrlRef}
+            />
           </div>
         </div>
         <div className="space-y-1">
           <label className="text-sm" htmlFor="tags">Tags (comma separated)</label>
-          <input id="tags" name="tags" className="w-full rounded border px-3 py-2" placeholder="nextjs, prisma, tutorial" />
+          <input
+            id="tags"
+            name="tags"
+            className="w-full rounded border px-3 py-2"
+            placeholder="nextjs, prisma, tutorial"
+            ref={tagsRef}
+          />
         </div>
         <div className="space-y-1">
           <label className="text-sm" htmlFor="excerpt">Excerpt</label>
-          <textarea id="excerpt" name="excerpt" rows={3} className="w-full rounded border px-3 py-2" required />
+          <textarea
+            id="excerpt"
+            name="excerpt"
+            rows={3}
+            className="w-full rounded border px-3 py-2"
+            required
+            ref={excerptRef}
+          />
         </div>
         <div className="space-y-1">
           <label className="text-sm" htmlFor="content">Content (Markdown)</label>
@@ -142,7 +169,12 @@ export default function NewPostPage() {
           />
         </div>}
         {error && <div className="text-sm text-red-600">{error}</div>}
-        <button type="submit" disabled={loading} className="rounded bg-primary px-3 py-2 text-white disabled:opacity-60">
+        <button
+          type="button"
+          disabled={loading}
+          className="rounded bg-primary px-3 py-2 text-white disabled:opacity-60"
+          onClick={handleCreate}
+        >
           {loading ? "Creating…" : "Create"}
         </button>
       </form>
