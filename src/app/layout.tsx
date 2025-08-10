@@ -29,6 +29,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={geist.className}>
+      <head>
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+      </head>
       <body className="h-[100svh] w-full">
         <Suspense fallback={<div className="h-full w-full overflow-hidden">
           <div className="-z-50 fixed opacity-60 h-full w-full">

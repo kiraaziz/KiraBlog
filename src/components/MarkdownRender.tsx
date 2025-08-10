@@ -306,7 +306,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                     ul({ children, ...props }) {
                         return (
                             <ul
-                                className="my-6 ml-6 list-disc space-y-2"
+                                className="my-6 ml-6 list-disc -space-y-5"
                                 {...props}
                             >
                                 {children}
@@ -317,7 +317,7 @@ const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
                     ol({ children, ...props }) {
                         return (
                             <ol
-                                className="my-6 ml-6 list-decimal space-y-2"
+                                className="my-6 ml-6 list-decimal -space-y-5"
                                 {...props}
                             >
                                 {children}
