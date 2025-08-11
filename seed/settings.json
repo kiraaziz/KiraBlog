@@ -1,0 +1,156 @@
+[
+  {
+    "id": 143,
+    "key": "contact-whatsapp-url",
+    "value": "https://wa.me/21693989486",
+    "updatedAt": "2025-08-10T18:40:30.204Z",
+    "createdAt": "2025-08-10T18:40:30.204Z"
+  },
+  {
+    "id": 144,
+    "key": "social-linkedin-url",
+    "value": "https://www.linkedin.com/in/med-aziz-rjeibi-3b07832a5/",
+    "updatedAt": "2025-08-10T18:40:30.353Z",
+    "createdAt": "2025-08-10T18:40:30.353Z"
+  },
+  {
+    "id": 125,
+    "key": "my-site",
+    "value": "http://kiraaziz.club",
+    "updatedAt": "2025-08-10T18:40:27.691Z",
+    "createdAt": "2025-08-10T18:40:27.691Z"
+  },
+  {
+    "id": 126,
+    "key": "my-site-text",
+    "value": "About Me",
+    "updatedAt": "2025-08-10T18:40:27.830Z",
+    "createdAt": "2025-08-10T18:40:27.830Z"
+  },
+  {
+    "id": 128,
+    "key": "footer",
+    "value": "© 2025 Kira Blog. All rights reserved. | Designed & built by Kira Aziz",
+    "updatedAt": "2025-08-10T18:40:28.113Z",
+    "createdAt": "2025-08-10T18:40:28.113Z"
+  },
+  {
+    "id": 130,
+    "key": "home-title",
+    "value": "Welcome to My Digital Playground",
+    "updatedAt": "2025-08-10T18:40:28.395Z",
+    "createdAt": "2025-08-10T18:40:28.395Z"
+  },
+  {
+    "id": 131,
+    "key": "home-text",
+    "value": "Dive into a world of code, creativity, and community. Here, I share my journey through technology, from frontend finesse to backend brilliance, and everything in between. Let's build, learn, and inspire together!",
+    "updatedAt": "2025-08-10T18:40:28.515Z",
+    "createdAt": "2025-08-10T18:40:28.515Z"
+  },
+  {
+    "id": 132,
+    "key": "social-git-url",
+    "value": "https://github.com/kiraaziz",
+    "updatedAt": "2025-08-10T18:40:28.662Z",
+    "createdAt": "2025-08-10T18:40:28.662Z"
+  },
+  {
+    "id": 134,
+    "key": "home-banner",
+    "value": "✦ Keep Scrolling for More Inspiration ✦",
+    "updatedAt": "2025-08-10T18:40:28.955Z",
+    "createdAt": "2025-08-10T18:40:28.955Z"
+  },
+  {
+    "id": 135,
+    "key": "newsletter-title",
+    "value": "Subscribe to the Kira Blog Newsletter",
+    "updatedAt": "2025-08-10T18:40:29.097Z",
+    "createdAt": "2025-08-10T18:40:29.097Z"
+  },
+  {
+    "id": 136,
+    "key": "social-title",
+    "value": "Follow Us",
+    "updatedAt": "2025-08-10T18:40:29.235Z",
+    "createdAt": "2025-08-10T18:40:29.235Z"
+  },
+  {
+    "id": 137,
+    "key": "social-text",
+    "value": "Stay connected and join our vibrant tech community on your favorite platforms.",
+    "updatedAt": "2025-08-10T18:40:29.390Z",
+    "createdAt": "2025-08-10T18:40:29.390Z"
+  },
+  {
+    "id": 138,
+    "key": "social-face-url",
+    "value": "https://www.facebook.com/aziz.kira.581/",
+    "updatedAt": "2025-08-10T18:40:29.541Z",
+    "createdAt": "2025-08-10T18:40:29.541Z"
+  },
+  {
+    "id": 139,
+    "key": "social-inst-url",
+    "value": "https://www.instagram.com/kiracancode/",
+    "updatedAt": "2025-08-10T18:40:29.670Z",
+    "createdAt": "2025-08-10T18:40:29.670Z"
+  },
+  {
+    "id": 141,
+    "key": "contact-email-url",
+    "value": "mailto:kiraaziz2020@gmail.com",
+    "updatedAt": "2025-08-10T18:40:29.934Z",
+    "createdAt": "2025-08-10T18:40:29.934Z"
+  },
+  {
+    "id": 142,
+    "key": "contact-phone-url",
+    "value": "tel:+21693989486",
+    "updatedAt": "2025-08-10T18:40:30.062Z",
+    "createdAt": "2025-08-10T18:40:30.062Z"
+  },
+  {
+    "id": 145,
+    "key": "social-devto-url",
+    "value": "https://dev.to/kiraaziz",
+    "updatedAt": "2025-08-10T18:40:30.493Z",
+    "createdAt": "2025-08-10T18:40:30.493Z"
+  },
+  {
+    "id": 133,
+    "key": "home-svg",
+    "value": "<svg width=\"200\" height=\"200\" viewBox=\"0 0 200 200\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"> <g clip-path=\"url(#clip0_238_1296)\"> <path fill-rule=\"evenodd\" clip-rule=\"evenodd\" d=\"M100 0H0L100 100H0L100 200H200L100 100H200L100 0Z\" fill=\"url(#paint0_linear_238_1296)\"/> </g> <defs> <linearGradient id=\"paint0_linear_238_1296\" x1=\"20.5\" y1=\"16\" x2=\"100\" y2=\"200\" gradientUnits=\"userSpaceOnUse\"> <stop stop-color=\"#ACAAFF\"/> <stop offset=\"1\" stop-color=\"#C0E8FF\"/> </linearGradient> <clipPath id=\"clip0_238_1296\"> <rect width=\"200\" height=\"200\" fill=\"white\"/> </clipPath> </defs> </svg>",
+    "updatedAt": "2025-08-10T18:54:46.189Z",
+    "createdAt": "2025-08-10T18:40:28.795Z"
+  },
+  {
+    "id": 124,
+    "key": "title",
+    "value": "kira can code",
+    "updatedAt": "2025-08-10T19:23:26.761Z",
+    "createdAt": "2025-08-10T18:40:27.475Z"
+  },
+  {
+    "id": 129,
+    "key": "home-me",
+    "value": "Hi, I'm Kira",
+    "updatedAt": "2025-08-10T19:23:48.348Z",
+    "createdAt": "2025-08-10T18:40:28.254Z"
+  },
+  {
+    "id": 140,
+    "key": "main-post",
+    "value": "160",
+    "updatedAt": "2025-08-10T20:54:32.626Z",
+    "createdAt": "2025-08-10T18:40:29.814Z"
+  },
+  {
+    "id": 127,
+    "key": "tags",
+    "value": "Development, Lifestyle, Frontend, Backend, Database, Ai",
+    "updatedAt": "2025-08-10T21:31:45.632Z",
+    "createdAt": "2025-08-10T18:40:27.976Z"
+  }
+]
