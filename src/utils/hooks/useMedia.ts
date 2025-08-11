@@ -1,6 +1,7 @@
 "use server"
-import { supabase } from "@/utils/server/supabase"
 import { db } from "@/server/db"
+import { s3 } from "@/server/s3";
+import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 
 export async function useGetMedia() {
     const items: any = await db.media.findMany({
@@ -25,10 +26,19 @@ export async function useCreateMedia(data: { url: string; type?: string; title?:
 
 
 export async function useDeleteMedia(id: number, path?: string, bucket: string = "images") {
-    const deleted = await db.media.delete({ where: { id } })
-    if (path) {
-        await supabase.storage.from(bucket).remove([path])
-    }
+    try {
+        const deleted = await db.media.delete({ where: { id } })
+        
+        if (path) {
+            await s3.send(new DeleteObjectCommand({
+                Bucket: bucket,
+                Key: path,
+            }))
+        }
 
-    return deleted
+        return deleted
+    } catch (error) {
+        return
+    }
 }
+

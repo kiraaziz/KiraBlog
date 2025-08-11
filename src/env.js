@@ -3,8 +3,7 @@ import { z } from "zod";
 
 export const env = createEnv({
   /**
-   * Specify your server-side environment variables schema here. This way you can ensure the app
-   * isn't built with invalid env vars.
+   * Server-side environment variables schema.
    */
   server: {
     DATABASE_URL: z.string(),
@@ -12,13 +11,18 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
+    MINIO_URL: z.string().url(),
+    MINIO_ACCESS_KEY: z.string(),
+    MINIO_SECRET_KEY: z.string(),
   },
 
   /**
-   * Specify your client-side environment variables schema here. This way you can ensure the app
-   * isn't built with invalid env vars. To expose them to the client, prefix them with
-   * `NEXT_PUBLIC_`.
+   * Client-side environment variables schema.
+   * To expose them to the client, prefix them with `NEXT_PUBLIC_`.
    */
+  client: {
+    NEXT_PUBLIC_BASE_URL: z.string().url(),
+  },
 
   /**
    * You can't destruct `process.env` as a regular object in the Next.js edge runtimes (e.g.
@@ -28,6 +32,10 @@ export const env = createEnv({
     DATABASE_URL: process.env.DATABASE_URL,
     ADMIN_SECRET: process.env.ADMIN_SECRET,
     NODE_ENV: process.env.NODE_ENV,
+    MINIO_URL: process.env.MINIO_URL,
+    MINIO_ACCESS_KEY: process.env.MINIO_ACCESS_KEY,
+    MINIO_SECRET_KEY: process.env.MINIO_SECRET_KEY,
+    NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
   },
   /**
    * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation. This is especially

@@ -1,6 +1,6 @@
 "use client"
 import { useRef, useState } from "react";
-import { useUploadFile } from "@/utils/hooks/useUploadFile";
+import { useUpload } from "@/utils/hooks/useUploadFile";
 import { useRouter } from "next/navigation";
 import { useDeleteMedia } from "@/utils/hooks/useMedia";
 
@@ -16,13 +16,13 @@ const UploadMedia = () => {
     const inputRef = useRef<any>(null)
 
     const router = useRouter()
-    const { upload, isUploading, error } = useUploadFile("images");
+    const { uploadFile, loading, error } = useUpload();
     const onPick = () => inputRef.current?.click();
 
     const onChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (!file) return;
-        await upload(file);
+        await uploadFile(file);
 
         if (inputRef.current) {
             inputRef.current.value = "";
@@ -36,8 +36,8 @@ const UploadMedia = () => {
             <h1 className="text-2xl font-semibold">Gallery</h1>
             <div className="flex items-center gap-3">
                 <input ref={inputRef} type="file" accept="image/*,video/*" className="hidden" onChange={onChange} />
-                <button onClick={onPick} disabled={isUploading} className="rounded bg-primary px-4 py-2 font-medium text-white disabled:opacity-50">
-                    {isUploading ? "Uploading…" : "Upload File"}
+                <button onClick={onPick} disabled={loading} className="rounded bg-primary px-4 py-2 font-medium text-white disabled:opacity-50">
+                    {loading ? "Uploading…" : "Upload File"}
                 </button>
                 {error && <span className="text-sm text-red-600">{error}</span>}
             </div>
